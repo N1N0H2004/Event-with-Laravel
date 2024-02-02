@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locaties', function (Blueprint $table) {
+        Schema::create('Locaties', function (Blueprint $table) {
             $table->id();
-            $table->forEignIdFor(\App\Models\User::class)->constrained()->restrictOnDelete();
             $table->string('name');
             $table->timestamps();
         });
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('Locaties');
     }
 };

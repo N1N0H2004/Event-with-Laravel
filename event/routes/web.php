@@ -28,4 +28,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::resource("events", \App\Http\Controllers\EventController::class)->names([
+    'index' => 'events.index',
+    'show' => 'events.show',
+    'edit' => 'events.edit',
+    'create' => 'events.create',
+    'destroy' => 'events.destroy',
+    'update' => 'events.update',
+]);
+
+Route::resource("users", \App\Http\Controllers\UserController::class)->names([
+    'index' => 'users.index',
+    'show' => 'users.show',
+    'edit' => 'users.edit',
+    'create' => 'users.create',
+    'destroy' => 'users.destroy',
+    'update' => 'users.update',
+]);
+
 require __DIR__.'/auth.php';

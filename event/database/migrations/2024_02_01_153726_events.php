@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->forEignIdFor(\App\Models\User::class)->constrained()->restrictOnDelete();
-            $table->foreignIdFor(\App\Models\events::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Locatie::class, 'locatie_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->text('description');
-            $table->unsignedBigInteger('location_id');
             $table->date('event_date');
             $table->time('start_time');
             $table->time('end_time');
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('events');
     }
 };

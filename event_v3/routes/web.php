@@ -28,4 +28,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::resource("events", \App\Http\Controllers\EventController::class)->names([
+    'index' => 'events.index',
+    'show' => 'events.show',
+    'edit' => 'events.edit',
+    'create' => 'events.create',
+    'destroy' => 'events.destroy',
+    'update' => 'events.update',
+]);
+
+
 require __DIR__.'/auth.php';

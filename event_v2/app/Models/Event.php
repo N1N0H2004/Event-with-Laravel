@@ -12,14 +12,17 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $with = ['locatie'];
+
+
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function locaty(): HasOne
+    public function locatie(): belongsTo
     {
-        return $this->hasOne(Locatie::class);
+        return $this->belongsTo(Locatie::class);
     }
 }

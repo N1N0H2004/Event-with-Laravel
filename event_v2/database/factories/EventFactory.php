@@ -19,7 +19,7 @@ class EventFactory extends Factory
         return [
             'user_id' => User::factory(),
             'locatie_id' => Locatie::factory(),
-            'title' => $this->faker->sentence,
+            'title' => $this->faker->realText(11),
             'description' => $this->faker->paragraph,
             'event_date' => $this->faker->date,
             'start_time' => $this->faker->time,

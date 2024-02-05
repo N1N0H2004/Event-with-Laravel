@@ -24,12 +24,13 @@ it('passes a event to the view', function() {
         ->assertHasResource('event', EventResource::make($event));
 });
 
-//it('passes a locatie to the view', function() {
-//    $event = Event::factory()->create();
-//    $locaties = Locatie::factory(2)->for($event)->create();
-//
-//    $locaties->load('user');
-//
-//    get(route('events.show', $event))
-//        ->assertHasPaginatedResource('locaties', LocatieResource::collection($locaties->reverse()));
-//});
+it('passes a locatie to the view', function () {
+    $event = Event::factory()->create();
+    $locaties = Locatie::factory(2)->for($event)->create();
+
+    $locaties->load('user');
+
+    get(route('events.show', $event))
+        ->assertHasPaginatedResource('locaties', LocatieResource::collection($locaties->reverse()));
+});
+

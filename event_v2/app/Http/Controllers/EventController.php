@@ -14,18 +14,18 @@ class EventController extends Controller
     {
 //        dd(Event::all());
         return inertia('Events/Index', [
-            'events' => Event::all(),
-//          'events' => EventResource::collection(Event::with('user')->latest()->latest('id')->paginate()),
+              'events' => Event::all(),
+//              'events' => EventResource::collection(Event::with('user')->latest()->latest('id')->paginate()),
         ]);
     }
 
     public function show(Event $event)
     {
         $event->load('user');
-
+//        dd($event);
         return inertia('Events/Show', [
-            'event' => fn () => EventResource::make($event),
-            'locaties' => fn () => LocatieResource::collection($event->locatie()->with('user')->latest()->latest('id')),
+            'event' => $event,
+//            'locaties' =>'l',
         ]);
     }
 }

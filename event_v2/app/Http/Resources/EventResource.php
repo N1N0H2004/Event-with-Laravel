@@ -24,5 +24,6 @@ class EventResource extends JsonResource
             'end_time' => $this->end_time,
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
-        ];    }
+        ];
+    }
 }

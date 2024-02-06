@@ -16,8 +16,9 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function location(): HasOne
+    public function location(): BelongsTo
     {
-        return $this->hasOne(Location::class);
+        return $this->belongsTo(Location::class);
     }
+
 }

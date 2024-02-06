@@ -11,6 +11,16 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'location_id',
+        'title',
+        'description',
+        'event_date',
+        'start_time',
+        'end_time',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

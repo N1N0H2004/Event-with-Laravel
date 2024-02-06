@@ -24,20 +24,45 @@ class EventController extends Controller
 
     public function create(Event $event)
     {
-        return view('events.create', compact('event'));
-
+        $locations = Location::all();
+        return view('events.create', compact('event', 'locations'));
     }
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'location' => 'required',
+            'description' => 'required',
+            'event_date' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+        ]);
+
+        $user = auth()->user();
+
+        $event = Event::create([
+            'title' => $request->input('title'),
+            'location' => $request->input('location'),
+            'description' => $request->input('description'),
+            'event_date' => $request->input('event_date'),
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+            'user_id' => $user->id,
+        ]);
+
+        return redirect()->route('events.index')->with('success', 'Event created successfully.');
+    }
+
+
 
     public function destroy(Event $event)
     {
         try {
-            // Use the delete method to remove the event
             $event->delete();
-
-            // Redirect with a success message
-            return redirect()->route('events.index')->with('message', 'Event deletedw successfully!');
+            return redirect()->route('events.index')->with('message', 'Event delete successfully!');
         } catch (\Exception $e) {
-            // Log the error or handle it as needed
             return redirect()->back()->with('message', 'An error occurred while deleting the event.');
         }
     }

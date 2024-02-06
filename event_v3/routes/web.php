@@ -37,5 +37,13 @@ Route::resource("events", \App\Http\Controllers\EventController::class)->names([
     'update' => 'events.update',
 ]);
 
+Route::resource("locations", \App\Http\Controllers\LocationController::class)->names([
+    'index' => 'locations.index',
+    'show' => 'locations.show',
+    'edit' => 'locations.edit',
+    'create' => 'locations.create',
+    'destroy' => 'locations.destroy',
+    'update' => 'locations.update',
+]);
 
 require __DIR__.'/auth.php';

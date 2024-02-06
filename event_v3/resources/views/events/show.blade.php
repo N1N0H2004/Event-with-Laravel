@@ -10,21 +10,19 @@
             <!--  -->
 
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <h2 class="font-bold text-blue-400 text-xl">
-                    <strong>Event info</strong>
-                </h2>
+
                 <div class="text">
-                    <p><img class="rounded-xl w-40" src="/Images/Car.png" alt=""></p>
+                    <p><img class="rounded-xl w-60" src="/Images/Car.png" alt=""></p>
                     <p><strong>Title: </strong> {{ $event->title }}</p>
                     <p><strong>Location: </strong> {{ $event->location->name }}</p>
                     <p><strong>Description: </strong> {{ $event->description }}</p>
-                    <p><strong>Date: </strong> {{ $event->event_date }}</p>
+                    <p><strong>Date: </strong> {{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}</p>
                     <p><strong>Time: </strong> {{ $event->start_time }} {{ $event->end_time }}</p>
 
 
 
                     <br>
-                    <a href="{{ route('events.index', $event->id)  }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1.5 px-3 rounded-lg transition duration-300 ease-in-out">Back</a>
+                    <a href="{{ route('events.index', $event->id)  }}" class="w-auto bg-white tracking-wide text-gray-800 font-bold rounded border-b-2 border-blue-500 hover:border-blue-600 hover:bg-blue-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">Back</a>
 
                 </div>
             </div>

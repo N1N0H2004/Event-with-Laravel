@@ -13,7 +13,7 @@ class LocationController extends Controller
     {
         $locations = Location::all()->sortBy('created_at');
 
-        return view('locations.index', compact('locations'));
+        return view('locations.index', compact('locations'))->with('alert', 'You are now on the Locations page.');
     }
 
     public function show(Location $location)
@@ -46,9 +46,9 @@ class LocationController extends Controller
     {
         try {
             $location->delete();
-            return redirect()->route('locations.index')->with('message', 'Location delete successfully!');
+            return redirect()->route('locations.index')->with('warning', 'Location delete successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('message', 'An error occurred while deleting the location.');
+            return redirect()->back()->with('info', 'An error occurred while deleting the location.');
         }
     }
 
@@ -69,6 +69,6 @@ class LocationController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('locations.index', $location->id);
+        return redirect()->route('locations.index', $location->id)->with('info', 'Location edited successfully.');
     }
 }

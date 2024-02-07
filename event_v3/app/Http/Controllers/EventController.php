@@ -13,7 +13,7 @@ class EventController extends Controller
         $events = Event::all()->sortBy('events_id');
 
 
-        return view('events.index', compact('events'));
+        return view('events.index', compact('events'))->with('alert', 'You are now on the Events page.');
     }
 
     public function show(Event $event)
@@ -62,9 +62,9 @@ class EventController extends Controller
     {
         try {
             $event->delete();
-            return redirect()->route('events.index')->with('message', 'Event delete successfully!');
+            return redirect()->route('events.index')->with('warning', 'Event delete successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('message', 'An error occurred while deleting the event.');
+            return redirect()->back()->with('info', 'An error occurred while deleting the event.');
         }
     }
 
@@ -97,6 +97,6 @@ class EventController extends Controller
         ]);
 
 
-        return redirect()->route('events.show', $event->id);
+        return redirect()->route('events.show', $event->id)->with('info', 'Location edited successfully.');
     }
 }

@@ -17,11 +17,12 @@
                     <p><strong>Location: </strong> {{ $event->location->name }}</p>
                     <p><strong>Description: </strong> {{ $event->description }}</p>
                     <p><strong>Date: </strong> {{ \Carbon\Carbon::parse($event->event_date)->format('d-m-Y') }}</p>
-                    <p><strong>Time: </strong> {{ $event->start_time }} {{ $event->end_time }}</p>
+                    <p><strong>Time: </strong> {{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} to {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</p>
 
 
 
                     <br>
+                    <a href="{{ route('events.edit', $event->id)  }}" class="w-auto bg-white tracking-wide text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">Edit</a>
                     <a href="{{ route('events.index', $event->id)  }}" class="w-auto bg-white tracking-wide text-gray-800 font-bold rounded border-b-2 border-blue-500 hover:border-blue-600 hover:bg-blue-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">Back</a>
 
                 </div>

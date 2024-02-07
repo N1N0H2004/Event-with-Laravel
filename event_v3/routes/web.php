@@ -46,4 +46,13 @@ Route::resource("locations", \App\Http\Controllers\LocationController::class)->n
     'update' => 'locations.update',
 ]);
 
+Route::resource("testings", \App\Http\Controllers\TestingController::class)->names([
+    'index' => 'testings.index',
+    'show' => 'testings.show',
+    'edit' => 'testings.edit',
+    'create' => 'testings.create',
+    'destroy' => 'testings.destroy',
+    'update' => 'testings.update',
+]);
+
 require __DIR__.'/auth.php';

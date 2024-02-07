@@ -13,16 +13,25 @@
                     <strong>Title: <x-text-input type="text" name="title" field="title" placeholder="Title..." class="w-full border-black" autocomplete="off" :value="@old('title')"></x-text-input> </strong> <br> <br>
                     <strong>Description:  <x-text-input type="text" name="description" field="description" placeholder="Description..." class="w-full border-black" autocomplete="off" :value="@old('description')"></x-text-input> </strong> <br> <br>
                     <strong>Location:
-                        <select name="location_id" class="w-full" autocomplete="off">
+                        <select name="location_id" class="w-full rounded" autocomplete="off">
                             <option value="">Select a location</option>
                             @foreach($locations as $location)
                                 <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected' : '' }}>{{ $location->name }}</option>
                             @endforeach
                         </select>
                     </strong> <br> <br>
-                    <strong>Event date: <br> <input type="date" name="event_date" placeholder="Date..." class="rounded" autocomplete="off" value="{{ old('event_date') }}"></strong> <br> <br>
-                    <strong>Start time: <br> <input type="time" name="start_time" placeholder="Start time..." class="rounded" autocomplete="off" value="{{ old('start_time') }}"></strong> <br> <br>
-                    <strong>End time: <br> <input type="time" name="end_time" placeholder="End time..." class="rounded" autocomplete="off" value="{{ old('end_time') }}"></strong> <br> <br>
+
+                    <strong><label for="date"> Date: <br></label>
+                        <label for="event_date"></label><input class="rounded" type="date" id="event_date" name="event_date" required>
+                    </strong> <br> <br>
+
+                    <strong><label for="time"> Start time: <br></label>
+                        <label for="start_time"></label><input class="rounded" type="time" id="start_time" name="start_time" required>
+                    </strong> <br> <br>
+
+                    <strong><label for="time"> End time: <br></label>
+                        <label for="end_time"></label><input class="rounded" type="time" id="end_time" name="end_time" required>
+                    </strong> <br> <br>
 
 
                     <button type="submit" class="w-auto bg-white tracking-wide text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">Add event</button>

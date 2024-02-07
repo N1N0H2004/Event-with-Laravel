@@ -24,8 +24,8 @@ class EventFactory extends Factory
             'title' => $this->faker->realText(11),
             'description' => $this->faker->paragraph,
             'event_date' => $this->faker->date,
-            'start_time' => $this->faker->time,
-            'end_time' => $this->faker->time,
+            'start_time' => $this->faker->time('H:i'),
+            'end_time' => $this->faker->time('H:i'),
             'created_at' => now(),
             'updated_at' => now(),
         ];

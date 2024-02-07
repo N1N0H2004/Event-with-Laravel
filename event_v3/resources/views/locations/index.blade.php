@@ -16,10 +16,12 @@
                     <div class=" p-4 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                         <div class="flex justify-between items-center">
                             <strong class="my-4">Location: {{ $location->name }}</strong>
-
-        {{-- DELETE BUTTON --}}
-                            <button type="button" onclick="deleteOpenConfirmationPopup('{{ $location->id }}')" class="w-auto h-8 bg-white float-right text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">Delete location</button>
-
+                    <div class="w-52">
+                            <a href="{{ route('locations.edit', $location->id)  }}" class="w-auto h-8 bg-white float-right text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">Edit</a>
+                    <br>
+                            {{-- DELETE BUTTON --}}
+                            <button type="button" onclick="deleteOpenConfirmationPopup('{{ $location->id }}')" class="w-auto h-8 mt-1 bg-white float-right text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">Delete location</button>
+                    </div>
                             <div id="confirmationPopup-{{ $location->id }}" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center" style="display: none;">
                                 <div class="bg-white p-8 rounded-md shadow-md">
                                     <div class="text-center p-5 flex-auto justify-center">

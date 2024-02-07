@@ -38,7 +38,6 @@ class LocationController extends Controller
 
         ]);
 
-        // Redirect to a confirmation page or somewhere else
         return redirect()->route('locations.index')->with('success', 'Event created successfully.');
     }
 
@@ -50,5 +49,25 @@ class LocationController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('message', 'An error occurred while deleting the location.');
         }
+    }
+
+    public function edit(Location $location)
+    {
+
+        return view('locations.edit', compact('location'));
+
+    }
+
+    public function update(Request $request, Location $location)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $location->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('locations.index', $location->id);
     }
 }

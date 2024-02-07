@@ -33,7 +33,7 @@ class EventController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'location' => 'required',
+            'location_id' => 'required',
             'description' => 'required',
             'event_date' => 'required',
             'start_time' => 'required',
@@ -42,19 +42,20 @@ class EventController extends Controller
 
         $user = auth()->user();
 
-        $event = Event::create([
-            'title' => $request->input('title'),
-            'location' => $request->input('location'),
-            'description' => $request->input('description'),
-            'event_date' => $request->input('event_date'),
-            'start_time' => $request->input('start_time'),
-            'end_time' => $request->input('end_time'),
+
+        Event::create([
+            'title' => $request->title,
+            'location_id' => $request->location_id,
+            'description' => $request->description,
+            'event_date' => $request->event_date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
             'user_id' => $user->id,
+
         ]);
 
         return redirect()->route('events.index')->with('success', 'Event created successfully.');
     }
-
 
 
     public function destroy(Event $event)
@@ -65,5 +66,36 @@ class EventController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('message', 'An error occurred while deleting the event.');
         }
+    }
+
+    public function edit(Event $event)
+    {
+        $locations = Location::all();
+
+        return view('events.edit', compact('event', 'locations'));
+
+    }
+
+    public function update(Request $request, Event $event)
+    {
+        $request->validate([
+            'title' => 'required',
+            'location' => 'required',
+            'description' => 'required',
+            'event_date' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+        ]);
+
+        $event->update([
+            'title' => $request->title,
+            'location' => $request->location,
+            'description' => $request->description,
+            'event_date' => $request->event_date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+        ]);
+
+        return redirect()->route('events.show', $event->id);
     }
 }

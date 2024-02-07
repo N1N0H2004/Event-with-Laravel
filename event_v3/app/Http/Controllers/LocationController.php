@@ -38,7 +38,8 @@ class LocationController extends Controller
 
         ]);
 
-        return redirect()->route('locations.index')->with('success', 'Event created successfully.');
+
+        return redirect()->route('locations.index')->with('success', 'Location created successfully.');
     }
 
     public function destroy(Location $location)

@@ -96,6 +96,7 @@ class EventController extends Controller
             'end_time' => $request->end_time,
         ]);
 
+
         return redirect()->route('events.show', $event->id);
     }
 }

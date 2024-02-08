@@ -26,5 +26,8 @@ class LocationSeeder extends Seeder
             'Rijnsburg',
         ];
 
+        foreach ($locations as $locationName) {
+            Location::create(['name' => $locationName]);
+        }
     }
 }

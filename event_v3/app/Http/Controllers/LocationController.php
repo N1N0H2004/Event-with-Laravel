@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreLocationRequest;
 use App\Models\Event;
 use App\Models\Location;
 
@@ -12,8 +13,9 @@ class LocationController extends Controller
     public function index()
     {
         $locations = Location::all()->sortBy('created_at');
+        $alert = "You are now on the location page.";
 
-        return view('locations.index', compact('locations'))->with('alert', 'You are now on the Locations page.');
+        return view('locations.index', compact('locations', 'alert'));
     }
 
     public function show(Location $location)
@@ -27,15 +29,11 @@ class LocationController extends Controller
         return view('locations.create', compact('location'));
     }
 
-    public function store(Request $request)
+    public function store(StoreLocationRequest  $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
 
         $location = Location::create([
             'name' => $request->name,
-
         ]);
 
 
@@ -48,7 +46,7 @@ class LocationController extends Controller
             $location->delete();
             return redirect()->route('locations.index')->with('warning', 'Location delete successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('info', 'An error occurred while deleting the location.');
+            return redirect()->back()->with('warning', 'An error occurred while deleting the location.');
         }
     }
 
@@ -59,11 +57,8 @@ class LocationController extends Controller
 
     }
 
-    public function update(Request $request, Location $location)
+    public function update(StoreLocationRequest $request, Location $location)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
 
         $location->update([
             'name' => $request->name,

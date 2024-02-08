@@ -27,6 +27,7 @@
                                 <a href="{{ route('locations.index') }}" class="w-auto bg-white tracking-wide text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center ml-2">Confirm</a>
                             </div>
                         </div>
+
                     </div>
                 </form>
             </div>

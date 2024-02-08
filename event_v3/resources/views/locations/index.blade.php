@@ -16,6 +16,7 @@
                     <div class=" p-4 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                         <div class="flex justify-between items-center">
                             <strong class="my-4">Location: {{ $location->name }}</strong>
+
                     <div class="w-52">
                             <a href="{{ route('locations.edit', $location->id)  }}" class="w-auto h-8 bg-white float-right text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">Edit</a>
                     <br>
@@ -56,6 +57,19 @@
             </div>
         </div>
     </div>
+
+
+    <x-slot name="footer">
+        <hr class="my-6 border-blueGray-300">
+        <div class="flex flex-wrap items-center md:justify-between justify-center">
+            <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+                <div class="text-sm text-blueGray-500 font-semibold py-1 mb-5">
+                    Copyright © Event-Holder by Ninoh van Dijke.
+                </div>
+            </div>
+        </div>
+    </x-slot>
+
 
 </x-app-layout>
 

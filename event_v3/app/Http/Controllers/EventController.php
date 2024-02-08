@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEventRequest;
 use App\Models\Event;
 use App\Models\Location;
 use Illuminate\Http\Request;
@@ -11,9 +12,9 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all()->sortBy('events_id');
+        $alert = "You are now on the event page.";
 
-
-        return view('events.index', compact('events'))->with('alert', 'You are now on the Events page.');
+        return view('events.index', compact('events', 'alert'));
     }
 
     public function show(Event $event)
@@ -29,19 +30,10 @@ class EventController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StoreEventRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'location_id' => 'required',
-            'description' => 'required',
-            'event_date' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required',
-        ]);
 
         $user = auth()->user();
-
 
         Event::create([
             'title' => $request->title,
@@ -64,7 +56,7 @@ class EventController extends Controller
             $event->delete();
             return redirect()->route('events.index')->with('warning', 'Event delete successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('info', 'An error occurred while deleting the event.');
+            return redirect()->back()->with('warning', 'An error occurred while deleting the event.');
         }
     }
 
@@ -76,16 +68,8 @@ class EventController extends Controller
 
     }
 
-    public function update(Request $request, Event $event)
+    public function update(StoreEventRequest $request, Event $event)
     {
-        $request->validate([
-            'title' => 'required',
-            'location' => 'required',
-            'description' => 'required',
-            'event_date' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required',
-        ]);
 
         $event->update([
             'title' => $request->title,
